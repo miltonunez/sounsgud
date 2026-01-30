@@ -85,7 +85,7 @@ const App: React.FC = () => {
 
       {/* Logo Branding - Bottom Right */}
       <img
-        src="/Sounsgud_Logo_Blanco.svg"
+        src={`${import.meta.env.BASE_URL}Sounsgud_Logo_Blanco.svg`}
         className="absolute bottom-8 right-8 w-24 md:w-36 z-30 opacity-70 hover:opacity-100 transition-opacity duration-300"
         alt="Soundsgud Records"
       />
