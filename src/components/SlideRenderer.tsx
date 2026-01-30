@@ -169,46 +169,46 @@ export const SlideRenderer: React.FC<{ data: SlideData; onReset?: () => void }> 
   // 4. Standard Content Slide
   return (
     <div className="flex flex-col h-full animate-fade-in">
-      <div className="flex flex-row items-end justify-between mb-2 md:mb-6 pb-2 md:pb-3 border-b border-white/10">
-        <div className="flex items-center gap-3 md:gap-5">
+      <div className="flex flex-row items-end justify-between mb-2 md:mb-4 pb-2 md:pb-3 border-b border-white/10 shrink-0">
+        <div className="flex items-center gap-2 md:gap-4">
           {/* Title Icon Restored */}
           {TitleIconMap[data.id] && (
-            <div className="p-2 md:p-3 bg-white/5 rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] backdrop-blur-sm">
-              <div className="scale-75 md:scale-90 origin-center">{TitleIconMap[data.id]}</div>
+            <div className="p-1.5 md:p-2 bg-white/5 rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] backdrop-blur-sm">
+              <div className="scale-60 md:scale-75 origin-center">{TitleIconMap[data.id]}</div>
             </div>
           )}
           <div>
-            <h2 className="text-xl md:text-4xl font-display font-bold text-white mb-1">{data.title}</h2>
-            <p className="text-xs md:text-base text-pink-500 font-medium tracking-wider uppercase">{data.subtitle}</p>
+            <h2 className="text-lg md:text-3xl font-display font-bold text-white mb-0.5 md:mb-1">{data.title}</h2>
+            <p className="text-[10px] md:text-sm text-pink-500 font-medium tracking-wider uppercase">{data.subtitle}</p>
           </div>
         </div>
-        {data.id > 1 && <div className="block text-slate-600 font-display text-2xl md:text-3xl font-bold opacity-20">0{data.id}</div>}
+        {data.id > 1 && <div className="block text-slate-600 font-display text-xl md:text-2xl font-bold opacity-20">0{data.id}</div>}
       </div>
 
-      <div className="grid grid-cols-3 gap-2 md:gap-4 flex-grow items-start content-center pb-2">
+      <div className="grid grid-cols-3 gap-2 md:gap-4 flex-grow items-start content-center pb-2 md:pb-4">
         {data.items?.map((item, idx) => (
           <div
             key={idx}
-            className="glass-panel p-2 md:p-6 rounded-xl md:rounded-2xl h-full flex flex-col items-center text-center transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 border-t-2 border-t-transparent hover:border-t-pink-500 group"
+            className="glass-panel p-2 md:p-4 rounded-xl md:rounded-2xl h-full flex flex-col items-center text-center transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 border-t-2 border-t-transparent hover:border-t-pink-500 group"
           >
-            <div className="w-10 h-10 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-indigo-900/30 mb-2 md:mb-4 group-hover:bg-indigo-900/50 transition-colors">
-              <div className="scale-75 md:scale-100 origin-center">{getIcon(item.iconName)}</div>
+            <div className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-indigo-900/30 mb-1.5 md:mb-3 group-hover:bg-indigo-900/50 transition-colors">
+              <div className="scale-[0.65] md:scale-75 origin-center">{getIcon(item.iconName)}</div>
             </div>
-            <h3 className="text-xs md:text-xl font-bold text-white mb-1 md:mb-2 leading-tight">{item.title}</h3>
+            <h3 className="text-xs md:text-base font-bold text-white mb-1 leading-tight">{item.title}</h3>
             {item.align === 'left' && item.description.includes('•') ? (
               <div className="w-full">
-                <p className="text-slate-300 leading-snug md:leading-relaxed text-[10px] md:text-sm text-center mb-1 md:mb-2 line-clamp-2 md:line-clamp-none">{item.description.split('\n')[0]}</p>
-                <div className="text-slate-300 leading-snug md:leading-relaxed text-[9px] md:text-sm text-left pl-2 md:pl-4 hidden md:block">
+                <p className="text-slate-300 leading-snug md:leading-relaxed text-[9px] md:text-xs text-center mb-1 line-clamp-2 md:line-clamp-none">{item.description.split('\n')[0]}</p>
+                <div className="text-slate-300 leading-snug md:leading-relaxed text-[9px] md:text-xs text-left pl-2 md:pl-4 hidden md:block">
                   {item.description.split('\n').slice(1).map((line, i) => (
                     <div key={i}>{line}</div>
                   ))}
                 </div>
-                <div className="text-slate-300 leading-snug text-[9px] text-left pl-2 md:hidden block line-clamp-4">
+                <div className="text-slate-300 leading-snug text-[8px] md:text-[9px] text-left pl-2 md:hidden block line-clamp-4">
                   {item.description.replace('\n', ' ')}
                 </div>
               </div>
             ) : (
-              <p className="text-slate-300 leading-snug md:leading-relaxed text-[9px] md:text-sm whitespace-pre-line line-clamp-5 md:line-clamp-none">{item.description}</p>
+              <p className="text-slate-300 leading-snug md:leading-relaxed text-[9px] md:text-xs whitespace-pre-line line-clamp-5 md:line-clamp-none">{item.description}</p>
             )}
           </div>
         ))}
