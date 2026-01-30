@@ -120,41 +120,39 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      {/* Navigation Controls */}
-      <div className="absolute bottom-0 left-0 w-full p-2 md:p-8 z-20 flex flex-col items-center gap-2 md:gap-4 pointer-events-none">
+      {/* Side Navigation - Left */}
+      <button
+        onClick={prevSlide}
+        disabled={currentIndex === 0}
+        className={`absolute left-0 top-1/2 -translate-y-1/2 z-40 p-4 md:p-8 text-white/20 hover:text-white transition-all duration-300 outline-none ${currentIndex === 0 ? 'opacity-0 pointer-events-none' : 'cursor-pointer hover:scale-110'
+          }`}
+        aria-label="Previous Slide"
+      >
+        <ChevronLeft size={40} className="md:w-16 md:h-16 drop-shadow-lg" />
+      </button>
 
-        {/* Progress Bar */}
-        <div className="w-full max-w-xl h-0.5 md:h-1 bg-white/10 rounded-full overflow-hidden pointer-events-auto">
+      {/* Side Navigation - Right */}
+      <button
+        onClick={nextSlide}
+        disabled={currentIndex === SLIDES.length - 1}
+        className={`absolute right-0 top-1/2 -translate-y-1/2 z-40 p-4 md:p-8 text-white/20 hover:text-white transition-all duration-300 outline-none ${currentIndex === SLIDES.length - 1 ? 'opacity-0 pointer-events-none' : 'cursor-pointer hover:scale-110'
+          }`}
+        aria-label="Next Slide"
+      >
+        <ChevronRight size={40} className="md:w-16 md:h-16 drop-shadow-lg" />
+      </button>
+
+      {/* Bottom Progress Bar & Counter */}
+      <div className="absolute bottom-0 left-0 w-full p-6 z-20 flex flex-col items-center gap-2 pointer-events-none">
+        <div className="w-full max-w-xl h-1 bg-white/10 rounded-full overflow-hidden pointer-events-auto backdrop-blur-sm">
           <div
-            className="h-full bg-gradient-to-r from-pink-500 to-indigo-500 transition-all duration-500 ease-out"
+            className="h-full bg-gradient-to-r from-pink-500 to-indigo-500 transition-all duration-500 ease-out shadow-[0_0_10px_rgba(236,72,153,0.5)]"
             style={{ width: `${currentProgress}%` }}
           />
         </div>
-
-        {/* Buttons */}
-        <div className="flex items-center gap-4 md:gap-6 pointer-events-auto">
-          <button
-            onClick={prevSlide}
-            disabled={currentIndex === 0}
-            className={`p-2 md:p-4 rounded-full glass-panel transition-all duration-200 group ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-white/20 hover:scale-110 active:scale-95'
-              }`}
-          >
-            <ChevronLeft size={20} className="md:w-6 md:h-6 group-hover:-translate-x-0.5 transition-transform" />
-          </button>
-
-          <span className="font-display font-bold text-sm md:text-lg text-white/50 w-12 md:w-16 text-center">
-            {currentIndex + 1} / {SLIDES.length}
-          </span>
-
-          <button
-            onClick={nextSlide}
-            disabled={currentIndex === SLIDES.length - 1}
-            className={`p-2 md:p-4 rounded-full glass-panel transition-all duration-200 group ${currentIndex === SLIDES.length - 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-white/20 hover:scale-110 active:scale-95'
-              }`}
-          >
-            <ChevronRight size={20} className="md:w-6 md:h-6 group-hover:translate-x-0.5 transition-transform" />
-          </button>
-        </div>
+        <span className="font-display font-medium text-xs md:text-sm text-white/30 tracking-widest">
+          {currentIndex + 1} / {SLIDES.length}
+        </span>
       </div>
 
       {/* Rotate Device Overlay */}
