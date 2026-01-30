@@ -15,6 +15,27 @@ const App: React.FC = () => {
     setCurrentIndex((prev) => (prev === 0 ? prev : prev - 1));
   }, []);
 
+  // Fullscreen Detection
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      const doc = document as any;
+      const isFull = !!(doc.fullscreenElement || doc.webkitFullscreenElement || doc.mozFullScreenElement || doc.msFullscreenElement);
+      setIsFullscreen(isFull);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
+    };
+  }, []);
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -29,26 +50,24 @@ const App: React.FC = () => {
   }, [nextSlide, prevSlide]);
 
   // Fullscreen toggle - robust cross-browser implementation
-  const toggleFullscreen = () => {
+  const toggleFullscreen = async () => {
     try {
-      if (!document.fullscreenElement && !(document as any).webkitFullscreenElement) {
-        const docEl = document.documentElement as any;
-        if (docEl.requestFullscreen) {
-          docEl.requestFullscreen();
-        } else if (docEl.webkitRequestFullscreen) { /* Safari/Chrome Mobile */
-          docEl.webkitRequestFullscreen();
-        } else if (docEl.msRequestFullscreen) { /* IE/Edge */
-          docEl.msRequestFullscreen();
-        }
-        setIsFullscreen(true);
+      const doc = document as any;
+      const docEl = document.documentElement as any;
+
+      const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullscreen || docEl.msRequestFullscreen;
+      const exitFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+      if (!requestFullScreen) {
+        // Fallback for iOS Safari which doesn't support API on elements but supports standalone mode
+        alert("Pantalla completa no soportada en este navegador. Prueba 'Añadir a pantalla de inicio'.");
+        return;
+      }
+
+      if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+        await requestFullScreen.call(docEl);
       } else {
-        const doc = document as any;
-        if (doc.exitFullscreen) {
-          doc.exitFullscreen();
-        } else if (doc.webkitExitFullscreen) {
-          doc.webkitExitFullscreen();
-        }
-        setIsFullscreen(false);
+        await exitFullScreen.call(doc);
       }
     } catch (err) {
       console.log("Fullscreen toggle failed:", err);
