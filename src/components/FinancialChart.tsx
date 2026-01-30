@@ -19,20 +19,20 @@ const dataNet = [
 
 const FinancialChart: React.FC = () => {
   return (
-    <div className="w-full h-full flex flex-col lg:flex-row items-center justify-between gap-4 py-4">
+    <div className="w-full h-full flex flex-col lg:flex-row items-center justify-between gap-2 md:gap-4 py-2 md:py-4">
 
       {/* Chart 1: Distribution Cost (Left, Smaller) */}
-      <div className="w-full lg:w-1/4 flex flex-col items-center opacity-80 scale-90 transition hover:scale-100 hover:opacity-100">
-        <h3 className="text-sm font-display font-bold mb-2 text-center text-slate-400 uppercase tracking-wider">Ingresos Brutos</h3>
-        <div className="h-32 w-full">
+      <div className="w-full lg:w-1/4 flex flex-col items-center opacity-80 transition hover:opacity-100">
+        <h3 className="text-xs font-display font-bold mb-1 md:mb-2 text-center text-slate-400 uppercase tracking-wider">Ingresos Brutos</h3>
+        <div className="h-24 md:h-32 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
                 data={dataGross}
                 cx="50%"
                 cy="50%"
-                innerRadius={30}
-                outerRadius={45}
+                innerRadius={25}
+                outerRadius={40}
                 paddingAngle={5}
                 dataKey="value"
                 stroke="none"
@@ -42,21 +42,21 @@ const FinancialChart: React.FC = () => {
                 ))}
               </Pie>
               <Tooltip
-                contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff', fontSize: '12px' }}
+                contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff', fontSize: '10px', padding: '4px' }}
                 itemStyle={{ color: '#fff' }}
               />
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div className="text-center mt-1 text-xs text-slate-500">
+        <div className="text-center mt-1 text-[10px] text-slate-500">
           85% Proyecto / 15% Symphonic
         </div>
       </div>
 
       {/* Chart 2: Main Structure (Center, Large) */}
       <div className="w-full lg:w-1/2 flex flex-col items-center relative z-10">
-        <h3 className="text-2xl font-display font-bold mb-6 text-center text-white drop-shadow-lg">ESTRUCTURA DE ALIANZA</h3>
-        <div className="h-64 w-full md:h-80 relative">
+        <h3 className="text-lg md:text-xl font-display font-bold mb-2 md:mb-4 text-center text-white drop-shadow-lg">ESTRUCTURA DE ALIANZA</h3>
+        <div className="h-48 md:h-64 w-full relative">
           {/* Decorative Ring */}
           <div className="absolute inset-0 rounded-full border border-indigo-500/10 animate-pulse scale-90"></div>
 
@@ -66,8 +66,8 @@ const FinancialChart: React.FC = () => {
                 data={dataMain}
                 cx="50%"
                 cy="50%"
-                innerRadius={80}
-                outerRadius={110}
+                innerRadius={60}
+                outerRadius={85}
                 paddingAngle={3}
                 dataKey="value"
                 stroke="none"
@@ -83,7 +83,7 @@ const FinancialChart: React.FC = () => {
                 ))}
               </Pie>
               <Tooltip
-                contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #6366f1', borderRadius: '12px', color: '#fff', padding: '12px' }}
+                contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #6366f1', borderRadius: '12px', color: '#fff', padding: '8px', fontSize: '12px' }}
                 itemStyle={{ color: '#fff', fontWeight: 'bold' }}
               />
             </PieChart>
@@ -91,34 +91,34 @@ const FinancialChart: React.FC = () => {
         </div>
 
         {/* Custom Legend to ensure correct order */}
-        <div className="flex flex-wrap justify-center gap-4 mt-2">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#ec4899]"></div>
-            <span className="text-sm text-slate-300 font-medium">Tú (63.75%)</span>
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mt-2">
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#ec4899]"></div>
+            <span className="text-xs text-slate-300 font-medium">Tú (63.75%)</span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#8b5cf6]"></div>
-            <span className="text-sm text-slate-300 font-medium">Sounsgud (21.25%)</span>
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#8b5cf6]"></div>
+            <span className="text-xs text-slate-300 font-medium">Sounsgud (21.25%)</span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#94a3b8]"></div>
-            <span className="text-sm text-slate-300 font-medium">Symphonic (15%)</span>
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#94a3b8]"></div>
+            <span className="text-xs text-slate-300 font-medium">Symphonic (15%)</span>
           </div>
         </div>
       </div>
 
       {/* Chart 3: Net Split (Right, Smaller) */}
-      <div className="w-full lg:w-1/4 flex flex-col items-center opacity-80 scale-90 transition hover:scale-100 hover:opacity-100">
-        <h3 className="text-sm font-display font-bold mb-2 text-center text-slate-400 uppercase tracking-wider">División Remanente</h3>
-        <div className="h-32 w-full">
+      <div className="w-full lg:w-1/4 flex flex-col items-center opacity-80 transition hover:opacity-100">
+        <h3 className="text-xs font-display font-bold mb-1 md:mb-2 text-center text-slate-400 uppercase tracking-wider">División Remanente</h3>
+        <div className="h-24 md:h-32 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
                 data={dataNet}
                 cx="50%"
                 cy="50%"
-                innerRadius={30}
-                outerRadius={45}
+                innerRadius={25}
+                outerRadius={40}
                 paddingAngle={5}
                 dataKey="value"
                 stroke="none"
@@ -128,13 +128,13 @@ const FinancialChart: React.FC = () => {
                 ))}
               </Pie>
               <Tooltip
-                contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff', fontSize: '12px' }}
+                contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff', fontSize: '10px', padding: '4px' }}
                 itemStyle={{ color: '#fff' }}
               />
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div className="text-center mt-1 text-xs text-slate-500">
+        <div className="text-center mt-1 text-[10px] text-slate-500">
           75% Tú / 25% Sounsgud
         </div>
       </div>
