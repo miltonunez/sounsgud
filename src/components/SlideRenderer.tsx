@@ -22,17 +22,17 @@ interface SlideProps {
 
 // Map for Title Icons (Colored Header Icons)
 const TitleIconMap: Record<number, React.ReactNode> = {
-  2: <HeartHandshake size={52} className="text-pink-500" />,
-  3: <Globe size={52} className="text-blue-500" />,
-  4: <ShieldCheck size={52} className="text-green-500" />,
-  6: <Rocket size={52} className="text-orange-500" />,
-  7: <Zap size={52} className="text-yellow-400" />,
-  8: <Music size={52} className="text-indigo-500" />,
+  2: <HeartHandshake size={32} className="text-pink-500" />,
+  3: <Globe size={32} className="text-blue-500" />,
+  4: <ShieldCheck size={32} className="text-green-500" />,
+  6: <Rocket size={32} className="text-orange-500" />,
+  7: <Zap size={32} className="text-yellow-400" />,
+  8: <Music size={32} className="text-indigo-500" />,
 };
 
 const getIcon = (iconName?: string) => {
   if (!iconName) return null;
-  const props = { size: 40, className: "text-indigo-400 group-hover:text-pink-400 transition-colors duration-300" };
+  const props = { size: 32, className: "text-indigo-400 group-hover:text-pink-400 transition-colors duration-300" };
 
   switch (iconName) {
     case 'Award': return <Award {...props} />;
@@ -53,7 +53,7 @@ const getIcon = (iconName?: string) => {
     case 'FileText': return <FileText {...props} />;
     case 'Compass': return <Compass {...props} />;
     case 'Target': return <Target {...props} />;
-    case 'CheckCircle': return <CheckCircle {...props} className="text-green-400 mb-4" />;
+    case 'CheckCircle': return <CheckCircle {...props} className="text-green-400 mb-1" />;
     case 'DollarSign': return <DollarSign {...props} />;
     default: return <Zap {...props} />;
   }
@@ -70,12 +70,9 @@ export const SlideRenderer: React.FC<{ data: SlideData; onReset?: () => void }> 
         <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tight text-white uppercase drop-shadow-2xl max-w-5xl whitespace-pre-line leading-tight">
           {data.title}
         </h1>
-        <p className="text-2xl md:text-3xl text-indigo-200 font-light tracking-widest uppercase">
+        <p className="text-sm md:text-base text-indigo-200 font-light tracking-widest uppercase">
           {data.subtitle}
         </p>
-        <div className="mt-12 py-3 px-8 rounded-full border border-white/20 text-sm uppercase tracking-widest text-white/60 font-light">
-          {data.highlight}
-        </div>
       </div>
     );
   }
@@ -84,16 +81,16 @@ export const SlideRenderer: React.FC<{ data: SlideData; onReset?: () => void }> 
   if (data.type === SlideType.FINANCIAL) {
     return (
       <div className="flex flex-col h-full animate-fade-in">
-        <div className="flex flex-row items-end justify-between mb-2 md:mb-4 pb-2 md:pb-3 border-b border-white/10 shrink-0">
+        <div className="flex flex-row items-end justify-between mb-1 md:mb-2 pb-1 md:pb-2 border-b border-white/10 shrink-0">
           <div className="flex items-center gap-2 md:gap-4">
-            <div className="p-1.5 md:p-2 bg-white/5 rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] backdrop-blur-sm">
-              <div className="scale-60 md:scale-75 origin-center text-green-500">
-                <DollarSign size={52} />
+            <div className="icon-box-standard">
+              <div className="text-green-500">
+                <DollarSign size={32} />
               </div>
             </div>
             <div>
               <h2 className="text-lg md:text-3xl font-display font-bold text-white mb-0.5 md:mb-1">{data.title}</h2>
-              <p className="text-[10px] md:text-sm text-pink-500 font-medium tracking-wider uppercase">{data.subtitle}</p>
+              <p className="subtitle-tag">{data.subtitle}</p>
             </div>
           </div>
           {data.id > 1 && <div className="block text-xl md:text-2xl text-slate-600 font-display font-bold opacity-20">0{data.id}</div>}
@@ -138,17 +135,17 @@ export const SlideRenderer: React.FC<{ data: SlideData; onReset?: () => void }> 
 
     return (
       <div className="flex flex-col items-center justify-center h-full text-center space-y-4 md:space-y-8 animate-fade-in">
-        <div className="mb-2">
-          <h2 className="text-2xl md:text-5xl font-display font-bold text-white mb-1">
+        <div className="mb-1 md:mb-2">
+          <h2 className="text-lg md:text-3xl font-display font-bold text-white mb-0.5 md:mb-1">
             {data.title}
           </h2>
-          <p className="text-xs md:text-lg text-pink-500 font-bold uppercase tracking-[0.2em]">{data.subtitle}</p>
+          <p className="subtitle-tag">{data.subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-1 portrait:grid-cols-1 landscape:grid-cols-3 gap-3 md:gap-6 w-full max-w-5xl overflow-y-auto max-h-[60vh] md:max-h-none p-2">
+        <div className="grid grid-cols-1 portrait:grid-cols-1 landscape:grid-cols-3 gap-2 md:gap-4 w-full max-w-5xl overflow-y-auto max-h-[60vh] md:max-h-none p-2">
           {data.items?.map((item, idx) => (
-            <div key={idx} className="glass-panel p-4 md:p-6 rounded-xl flex flex-col items-center justify-center transform transition duration-500 hover:scale-105 hover:bg-white/10 group border-t-2 border-t-transparent hover:border-t-pink-500">
-              <div className="mb-2 md:mb-4">
+            <div key={idx} className="glass-panel p-3 md:p-4 rounded-xl flex flex-col items-center justify-center transform transition duration-500 hover:scale-105 hover:bg-white/10 group border-t-2 border-t-transparent hover:border-t-pink-500">
+              <div className="mb-1">
                 {getIcon(item.iconName)}
               </div>
               <h3 className="text-sm md:text-xl font-bold uppercase text-white group-hover:text-indigo-300 transition-colors">{item.title}</h3>
@@ -175,23 +172,23 @@ export const SlideRenderer: React.FC<{ data: SlideData; onReset?: () => void }> 
   // 4. Standard Content Slide
   return (
     <div className="flex flex-col h-full animate-fade-in">
-      <div className="flex flex-row items-end justify-between mb-2 md:mb-4 pb-2 md:pb-3 border-b border-white/10 shrink-0">
-        <div className="flex items-center gap-2 md:gap-4">
+      <div className="flex flex-row items-end justify-between mb-1 md:mb-2 pb-1 md:pb-2 border-b border-white/10 shrink-0">
+        <div className="flex items-center gap-2 md:gap-3">
           {/* Title Icon Restored */}
           {TitleIconMap[data.id] && (
-            <div className="p-1.5 md:p-2 bg-white/5 rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] backdrop-blur-sm">
-              <div className="scale-60 md:scale-75 origin-center">{TitleIconMap[data.id]}</div>
+            <div className="icon-box-standard">
+              <div className="origin-center">{TitleIconMap[data.id]}</div>
             </div>
           )}
           <div>
             <h2 className="text-lg md:text-3xl font-display font-bold text-white mb-0.5 md:mb-1">{data.title}</h2>
-            <p className="text-[10px] md:text-sm text-pink-500 font-medium tracking-wider uppercase">{data.subtitle}</p>
+            <p className="subtitle-tag">{data.subtitle}</p>
           </div>
         </div>
         {data.id > 1 && <div className="block text-slate-600 font-display text-xl md:text-2xl font-bold opacity-20">0{data.id}</div>}
       </div>
 
-      <div className="grid grid-cols-1 portrait:grid-cols-1 landscape:grid-cols-3 gap-2 md:gap-4 flex-grow items-start content-center pb-2 md:pb-4 overflow-y-auto">
+      <div className="grid grid-cols-1 portrait:grid-cols-1 landscape:grid-cols-3 gap-2 md:gap-4 flex-grow items-start content-center pt-2 md:pt-4 pb-2 md:pb-4 overflow-y-auto">
         {data.items?.map((item, idx) => (
           <div
             key={idx}

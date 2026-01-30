@@ -22,7 +22,7 @@ const FinancialChart: React.FC = () => {
     <div className="w-full h-full flex flex-col landscape:flex-row items-center justify-between gap-1 md:gap-4 py-1 md:py-4 overflow-y-auto landscape:overflow-visible">
 
       {/* Chart 1: Distribution Cost (Left, Smaller) */}
-      <div className="w-full landscape:flex-1 flex flex-col items-center opacity-80 transition hover:opacity-100 min-w-0">
+      <div className="w-full landscape:flex-[var(--chart-flex-side)] flex flex-col items-center opacity-80 transition hover:opacity-100 min-w-0">
         <h3 className="text-[10px] md:text-xs font-display font-bold mb-1 md:mb-2 text-center text-slate-400 uppercase tracking-wider">Ingresos Brutos</h3>
         <div className="h-20 landscape:h-24 md:h-32 w-full">
           <ResponsiveContainer width="100%" height="100%">
@@ -54,9 +54,9 @@ const FinancialChart: React.FC = () => {
       </div>
 
       {/* Chart 2: Main Structure (Center, Large) */}
-      <div className="w-full landscape:flex-[2] flex flex-col items-center relative z-10 min-w-0">
+      <div className="w-full landscape:flex-[var(--chart-flex-main)] flex flex-col items-center relative z-10 min-w-0 p-3 bg-white/5 rounded-2xl border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.3)]">
         <h3 className="text-base landscape:text-sm md:text-xl font-display font-bold mb-1 md:mb-4 text-center text-white drop-shadow-lg">ESTRUCTURA DE ALIANZA</h3>
-        <div className="h-36 landscape:h-40 md:h-64 w-full relative">
+        <div className="w-[128px] h-[128px] relative flex items-center justify-center">
           {/* Decorative Ring */}
           <div className="absolute inset-0 rounded-full border border-indigo-500/10 animate-pulse scale-90"></div>
 
@@ -66,8 +66,8 @@ const FinancialChart: React.FC = () => {
                 data={dataMain}
                 cx="50%"
                 cy="50%"
-                innerRadius={60}
-                outerRadius={85}
+                innerRadius={40}
+                outerRadius={60}
                 paddingAngle={3}
                 dataKey="value"
                 stroke="none"
@@ -91,24 +91,24 @@ const FinancialChart: React.FC = () => {
         </div>
 
         {/* Custom Legend to ensure correct order */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mt-2">
-          <div className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#ec4899]"></div>
-            <span className="text-xs text-slate-300 font-medium">Tú (63.75%)</span>
+        <div className="flex flex-row flex-nowrap justify-center gap-3 mt-2">
+          <div className="flex items-center gap-1">
+            <div className="w-2 h-2 rounded-full bg-[#ec4899] shrink-0"></div>
+            <span className="text-[9px] text-slate-300 font-medium whitespace-nowrap">Tú (63.75%)</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#8b5cf6]"></div>
-            <span className="text-xs text-slate-300 font-medium">Sounsgud (21.25%)</span>
+          <div className="flex items-center gap-1">
+            <div className="w-2 h-2 rounded-full bg-[#8b5cf6] shrink-0"></div>
+            <span className="text-[9px] text-slate-300 font-medium whitespace-nowrap">Sounsgud (21.25%)</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#94a3b8]"></div>
-            <span className="text-xs text-slate-300 font-medium">Symphonic (15%)</span>
+          <div className="flex items-center gap-1">
+            <div className="w-2 h-2 rounded-full bg-[#94a3b8] shrink-0"></div>
+            <span className="text-[9px] text-slate-300 font-medium whitespace-nowrap">Symphonic (15%)</span>
           </div>
         </div>
       </div>
 
       {/* Chart 3: Net Split (Right, Smaller) */}
-      <div className="w-full landscape:flex-1 flex flex-col items-center opacity-80 transition hover:opacity-100 min-w-0">
+      <div className="w-full landscape:flex-[var(--chart-flex-side)] flex flex-col items-center opacity-80 transition hover:opacity-100 min-w-0">
         <h3 className="text-[10px] md:text-xs font-display font-bold mb-1 md:mb-2 text-center text-slate-400 uppercase tracking-wider">División Remanente</h3>
         <div className="h-20 landscape:h-24 md:h-32 w-full">
           <ResponsiveContainer width="100%" height="100%">

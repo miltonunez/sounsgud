@@ -1,0 +1,137 @@
+/* =========================================
+   GLOBAL CSS VARIABLES - SOUNDSGUD PROPOSAL
+   =========================================
+   Centralized configuration for consistent styling across the application.
+*/
+
+:root {
+  /* --- COLORS --- */
+  /* Brand Identity */
+  --color-brand-dark: #0f172a;
+  /* Slate-950 */
+  --color-brand-accent: #6366f1;
+  /* Indigo-500 */
+  --color-brand-secondary: #ec4899;
+  /* Pink-500 */
+  --color-text-primary: #ffffff;
+  --color-text-muted: #94a3b8;
+  /* Slate-400 */
+
+  /* --- TYPOGRAPHY --- */
+  /* Font Families */
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Oswald', sans-serif;
+
+  /* Font Sizes - Specific Elements */
+  --text-subtitle-mobile: 7px;
+  --text-subtitle-desktop: 9px;
+  --text-title-mobile: 1.125rem;
+  /* text-lg */
+  --text-title-desktop: 1.875rem;
+  /* text-3xl */
+
+  /* --- LAYOUT & SPACING --- */
+  /* Global Padding */
+  --padding-app-mobile: 0.5rem;
+  /* p-2 */
+  --padding-app-tablet: 2rem;
+  /* p-8 */
+  --padding-app-desktop: 3rem;
+  /* p-12 */
+
+  /* --- COMPONENT: TOUCHPOINTS / ICONS --- */
+  /* Header Icon Containers */
+  --icon-container-size: 52px;
+  --icon-container-padding: 10px;
+  --icon-size: 32px;
+  /* Inner icon size */
+
+  /* Glassmorphism Effect */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  --glass-radius: 1rem;
+  /* rounded-2xl */
+
+  /* --- COMPONENT: CHARTS --- */
+  /* Financial Chart Flex Ratios (Landscape) */
+  --chart-flex-main: 7;
+  --chart-flex-side: 4;
+
+  /* Chart Heights */
+  --chart-height-mobile: 12rem;
+  /* h-48 */
+  --chart-height-landscape: 14rem;
+  /* h-56 */
+  --chart-height-desktop: 20rem;
+  /* h-80 */
+}
+
+/* =========================================
+   UTILITY CLASSES (Helper implementations)
+   =========================================
+*/
+
+/* Standardized Icon Container */
+.icon-box-standard {
+  width: var(--icon-container-size);
+  height: var(--icon-container-size);
+  padding: var(--icon-container-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  /* Circular "Donut" style */
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(4px);
+}
+
+/* Glass Panel (Cards) */
+.glass-panel {
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Standardized Subtitle */
+.subtitle-tag {
+  color: var(--color-brand-secondary);
+  font-weight: 700;
+  /* bold */
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  /* tracking-[0.2em] or wider */
+  font-size: var(--text-subtitle-mobile);
+}
+
+@media (min-width: 768px) {
+  .subtitle-tag {
+    font-size: var(--text-subtitle-desktop);
+  }
+}
+
+/* Standardized Slide Layout Header */
+.slide-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--glass-border);
+  flex-shrink: 0;
+  margin-bottom: 0.25rem;
+  /* mb-1 */
+  padding-bottom: 0.25rem;
+  /* pb-1 */
+}
+
+@media (min-width: 768px) {
+  .slide-header {
+    margin-bottom: 0.5rem;
+    /* md:mb-2 */
+    padding-bottom: 0.5rem;
+    /* md:pb-2 */
+  }
+}

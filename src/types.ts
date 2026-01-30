@@ -18,5 +18,4 @@ export interface SlideData {
   title: string;
   subtitle?: string;
   items?: SlideItem[];
-  highlight?: string;
 }

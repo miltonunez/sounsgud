@@ -90,13 +90,13 @@ const App: React.FC = () => {
       </div>
 
       {/* Header / Top Bar */}
-      <div className="absolute top-0 left-0 w-full p-4 md:p-6 flex justify-between items-center z-20">
-        <div className="text-[10px] md:text-xs font-display font-bold tracking-widest text-white/50">
-          PROPUESTA 2026
+      <div className="absolute top-0 left-0 w-full p-4 md:p-6 flex justify-center items-center z-20">
+        <div className="text-[10px] md:text-xs font-display tracking-widest text-white/50">
+          SOUNSGUD x GEORGE GOROSTIZA
         </div>
         <button
           onClick={toggleFullscreen}
-          className="p-2 rounded-full hover:bg-white/10 transition text-white/70"
+          className="absolute right-4 md:right-6 p-2 rounded-full hover:bg-white/10 transition text-white/70"
         >
           {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
         </button>
@@ -105,7 +105,7 @@ const App: React.FC = () => {
       {/* Logo Branding - Bottom Right */}
       <img
         src={`${import.meta.env.BASE_URL}Sounsgud_Logo_Blanco.svg`}
-        className="absolute bottom-4 right-4 md:bottom-8 md:right-8 w-12 md:w-18 z-30 opacity-70 hover:opacity-100 transition-opacity duration-300"
+        className="absolute bottom-4 right-4 md:bottom-8 md:right-8 w-12 md:w-18 z-30 opacity-100 hover:opacity-70 transition-opacity duration-300"
         alt="Soundsgud Records"
       />
 

@@ -37,29 +37,40 @@ const MarketingSlide: React.FC<{ data: SlideData }> = ({ data }) => {
     return (
         <div className="flex flex-col h-full animate-fade-in text-white">
             {/* Header */}
-            <div className="flex flex-row items-end justify-between mb-2 md:mb-4 pb-2 md:pb-3 border-b border-white/10 shrink-0">
-                <div className="flex items-center gap-2 md:gap-4">
-                    <div className="p-1.5 md:p-2 bg-white/5 rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] backdrop-blur-sm">
-                        <div className="scale-60 md:scale-75 origin-center text-yellow-400">
-                            <Zap size={52} />
+            <div className="flex flex-row items-end justify-between mb-1 md:mb-2 pb-1 md:pb-2 border-b border-white/10 shrink-0">
+                <div className="flex items-center gap-2 md:gap-3">
+                    <div className="icon-box-standard">
+                        <div className="text-yellow-400">
+                            <Zap size={32} />
                         </div>
                     </div>
                     <div>
                         <h2 className="text-lg md:text-3xl font-display font-bold text-white mb-0.5 md:mb-1">{data.title}</h2>
-                        <p className="text-[10px] md:text-sm text-pink-500 font-medium tracking-wider uppercase">{data.subtitle}</p>
+                        <p className="subtitle-tag">{data.subtitle}</p>
                     </div>
                 </div>
                 <div className="block text-slate-600 font-display text-xl md:text-2xl font-bold opacity-20">0{data.id}</div>
             </div>
 
             {/* 3 Columns - Stack vertically in portrait mode */}
-            <div className="grid grid-cols-1 portrait:grid-cols-1 landscape:grid-cols-3 gap-2 md:gap-4 flex-grow items-end content-center pb-2 md:pb-4 overflow-y-auto">
+            {/* 3 Columns - Stack vertically in portrait mode */}
+            <div className="grid grid-cols-1 portrait:grid-cols-1 landscape:grid-cols-3 gap-1 md:gap-2 flex-grow items-start content-start pb-1 md:pb-2 overflow-y-auto">
 
                 {/* Column 1: Smartphone (Vertical) - Producción Audiovisual */}
-                <div className="flex flex-col items-center gap-2 md:gap-3 group h-full justify-end">
+                <div className="flex flex-col items-center gap-1 md:gap-2 group h-full justify-start pt-2">
 
-                    {/* Mockup - Floating Above */}
-                    <div className="transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-3 z-10 mb-2 md:mb-4">
+                    {/* Standard Card Content */}
+                    <div className="glass-panel p-2 md:p-4 rounded-xl md:rounded-2xl w-full h-auto md:h-48 flex flex-col items-center justify-center text-center transition-all duration-300 transform group-hover:-translate-y-1 group-hover:bg-white/10 border-t-2 border-t-transparent group-hover:border-t-pink-500">
+                        <div className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-indigo-900/30 mb-1.5 md:mb-3 group-hover:bg-indigo-900/50 transition-colors">
+                            <div className="scale-75 md:scale-90 origin-center">{getIcon(data.items?.[0].iconName)}</div>
+                        </div>
+                        <h3 className="text-xs md:text-base font-bold text-white mb-1 leading-tight">{data.items?.[0].title}</h3>
+                        <p className="text-slate-300 leading-snug md:leading-relaxed text-[9px] md:text-[11px] hidden md:block">{data.items?.[0].description}</p>
+                        <p className="text-slate-300 leading-snug text-[8px] md:hidden block line-clamp-3 overflow-hidden">{data.items?.[0].description}</p>
+                    </div>
+
+                    {/* Mockup - Floating Above (Now Below) */}
+                    <div className="transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-1 z-10 mt-1 md:mt-2">
                         <div className={`relative w-20 h-36 md:w-28 md:h-52 bg-slate-900 border-2 md:border-4 border-slate-900 rounded-[1rem] md:rounded-[2rem] shadow-2xl overflow-hidden ${hoverGlowClass}`}>
                             {/* Notch */}
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 md:w-10 h-2 md:h-2.5 bg-slate-800 rounded-b-md md:rounded-b-lg z-20"></div>
@@ -85,23 +96,23 @@ const MarketingSlide: React.FC<{ data: SlideData }> = ({ data }) => {
                             </div>
                         </div>
                     </div>
+                </div>
+
+                {/* Column 2: Social Media Card - Campaña Promocional */}
+                <div className="flex flex-col items-center gap-1 md:gap-2 group h-full justify-start pt-2">
 
                     {/* Standard Card Content */}
                     <div className="glass-panel p-2 md:p-4 rounded-xl md:rounded-2xl w-full h-auto md:h-48 flex flex-col items-center justify-center text-center transition-all duration-300 transform group-hover:-translate-y-1 group-hover:bg-white/10 border-t-2 border-t-transparent group-hover:border-t-pink-500">
                         <div className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-indigo-900/30 mb-1.5 md:mb-3 group-hover:bg-indigo-900/50 transition-colors">
-                            <div className="scale-75 md:scale-90 origin-center">{getIcon(data.items?.[0].iconName)}</div>
+                            <div className="scale-75 md:scale-90 origin-center">{getIcon(data.items?.[1].iconName)}</div>
                         </div>
-                        <h3 className="text-xs md:text-base font-bold text-white mb-1 leading-tight">{data.items?.[0].title}</h3>
-                        <p className="text-slate-300 leading-snug md:leading-relaxed text-[9px] md:text-[11px] hidden md:block">{data.items?.[0].description}</p>
-                        <p className="text-slate-300 leading-snug text-[8px] md:hidden block line-clamp-3 overflow-hidden">{data.items?.[0].description}</p>
+                        <h3 className="text-xs md:text-base font-bold text-white mb-1 leading-tight">{data.items?.[1].title}</h3>
+                        <p className="text-slate-300 leading-snug md:leading-relaxed text-[9px] md:text-[11px] hidden md:block">{data.items?.[1].description}</p>
+                        <p className="text-slate-300 leading-snug text-[8px] md:hidden block line-clamp-3 overflow-hidden">{data.items?.[1].description}</p>
                     </div>
-                </div>
 
-                {/* Column 2: Social Media Card - Campaña Promocional */}
-                <div className="flex flex-col items-center gap-2 md:gap-3 group h-full justify-end">
-
-                    {/* Mockup - Floating Above */}
-                    <div className="transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-3 z-10 mb-6 md:mb-12">
+                    {/* Mockup - Floating Above (Now Below) */}
+                    <div className="transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-1 z-10 mt-1 md:mt-2">
                         <div className={`relative w-28 h-20 md:w-40 md:h-28 glass-panel rounded-lg md:rounded-xl p-2 md:p-3 flex flex-col justify-between shadow-xl ${hoverGlowClass} border border-white/10 overflow-visible`}>
                             {/* Floating Notification Badge */}
                             <div className="absolute -top-2 -right-2 w-6 h-6 md:w-7 md:h-7 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center border-2 md:border-3 border-slate-900 shadow-lg animate-bounce">
@@ -127,23 +138,23 @@ const MarketingSlide: React.FC<{ data: SlideData }> = ({ data }) => {
                             </div>
                         </div>
                     </div>
+                </div>
+
+                {/* Column 3: Media Kit - Media Kit */}
+                <div className="flex flex-col items-center gap-1 md:gap-2 group h-full justify-start pt-2">
 
                     {/* Standard Card Content */}
                     <div className="glass-panel p-2 md:p-4 rounded-xl md:rounded-2xl w-full h-auto md:h-48 flex flex-col items-center justify-center text-center transition-all duration-300 transform group-hover:-translate-y-1 group-hover:bg-white/10 border-t-2 border-t-transparent group-hover:border-t-pink-500">
                         <div className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-indigo-900/30 mb-1.5 md:mb-3 group-hover:bg-indigo-900/50 transition-colors">
-                            <div className="scale-75 md:scale-90 origin-center">{getIcon(data.items?.[1].iconName)}</div>
+                            <div className="scale-75 md:scale-90 origin-center">{getIcon(data.items?.[2].iconName)}</div>
                         </div>
-                        <h3 className="text-xs md:text-base font-bold text-white mb-1 leading-tight">{data.items?.[1].title}</h3>
-                        <p className="text-slate-300 leading-snug md:leading-relaxed text-[9px] md:text-[11px] hidden md:block">{data.items?.[1].description}</p>
-                        <p className="text-slate-300 leading-snug text-[8px] md:hidden block line-clamp-3 overflow-hidden">{data.items?.[1].description}</p>
+                        <h3 className="text-xs md:text-base font-bold text-white mb-1 leading-tight">{data.items?.[2].title}</h3>
+                        <p className="text-slate-300 leading-snug md:leading-relaxed text-[9px] md:text-[11px] hidden md:block">{data.items?.[2].description}</p>
+                        <p className="text-slate-300 leading-snug text-[8px] md:hidden block line-clamp-3 overflow-hidden">{data.items?.[2].description}</p>
                     </div>
-                </div>
 
-                {/* Column 3: Media Kit - Media Kit */}
-                <div className="flex flex-col items-center gap-2 md:gap-3 group h-full justify-end">
-
-                    {/* Mockup - Floating Above */}
-                    <div className="transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-3 z-10 mb-2 md:mb-4">
+                    {/* Mockup - Floating Above (Now Below) */}
+                    <div className="transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-1 z-10 mt-1 md:mt-2">
                         {/* Tablet/Doc Mockup */}
                         <div className={`relative w-24 h-32 md:w-32 md:h-44 bg-white/10 rounded-md md:rounded-lg p-[1px] shadow-2xl ${hoverGlowClass}`}>
                             {/* Screen/Paper */}
@@ -204,16 +215,6 @@ const MarketingSlide: React.FC<{ data: SlideData }> = ({ data }) => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    {/* Standard Card Content */}
-                    <div className="glass-panel p-2 md:p-4 rounded-xl md:rounded-2xl w-full h-auto md:h-48 flex flex-col items-center justify-center text-center transition-all duration-300 transform group-hover:-translate-y-1 group-hover:bg-white/10 border-t-2 border-t-transparent group-hover:border-t-pink-500">
-                        <div className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-indigo-900/30 mb-1.5 md:mb-3 group-hover:bg-indigo-900/50 transition-colors">
-                            <div className="scale-75 md:scale-90 origin-center">{getIcon(data.items?.[2].iconName)}</div>
-                        </div>
-                        <h3 className="text-xs md:text-base font-bold text-white mb-1 leading-tight">{data.items?.[2].title}</h3>
-                        <p className="text-slate-300 leading-snug md:leading-relaxed text-[9px] md:text-[11px] hidden md:block">{data.items?.[2].description}</p>
-                        <p className="text-slate-300 leading-snug text-[8px] md:hidden block line-clamp-3 overflow-hidden">{data.items?.[2].description}</p>
                     </div>
                 </div>
 
