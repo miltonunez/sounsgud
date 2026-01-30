@@ -83,6 +83,19 @@ const App: React.FC = () => {
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-slate-950 text-white selection:bg-pink-500 selection:text-white font-sans">
 
+      {/* Portrait Mode Rotate Prompt */}
+      <div className="fixed inset-0 z-[60] bg-slate-950 flex flex-col items-center justify-center text-center p-8 landscape:hidden">
+        <div className="mb-6 animate-rotate-device text-indigo-500">
+          <Smartphone size={64} />
+        </div>
+        <h2 className="text-xl font-display font-bold text-white mb-2 uppercase tracking-widest">
+          Por favor gira tu dispositivo
+        </h2>
+        <p className="text-indigo-200/50 text-xs tracking-wider uppercase">
+          Para visualizar la propuesta
+        </p>
+      </div>
+
       {/* Background Ambience */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-indigo-600/20 rounded-full blur-[120px]"></div>
