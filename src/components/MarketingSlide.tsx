@@ -40,8 +40,8 @@ const MarketingSlide: React.FC<{ data: SlideData }> = ({ data }) => {
             <div className="flex flex-row items-end justify-between mb-2 md:mb-4 pb-2 md:pb-3 border-b border-white/10 shrink-0">
                 <div className="flex items-center gap-2 md:gap-4">
                     <div className="p-1.5 md:p-2 bg-white/5 rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] backdrop-blur-sm">
-                        <div className="text-yellow-400">
-                            <Zap size={24} className="w-5 h-5 md:w-8 md:h-8" />
+                        <div className="scale-60 md:scale-75 origin-center text-yellow-400">
+                            <Zap size={52} />
                         </div>
                     </div>
                     <div>

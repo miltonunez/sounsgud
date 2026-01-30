@@ -84,26 +84,28 @@ export const SlideRenderer: React.FC<{ data: SlideData; onReset?: () => void }> 
   if (data.type === SlideType.FINANCIAL) {
     return (
       <div className="flex flex-col h-full animate-fade-in">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-white/10">
-          <div className="flex items-center gap-6">
-            <div className="p-3 bg-white/5 rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] backdrop-blur-sm">
-              <DollarSign size={52} className="text-green-500" />
+        <div className="flex flex-row items-end justify-between mb-2 md:mb-4 pb-2 md:pb-3 border-b border-white/10 shrink-0">
+          <div className="flex items-center gap-2 md:gap-4">
+            <div className="p-1.5 md:p-2 bg-white/5 rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] backdrop-blur-sm">
+              <div className="scale-60 md:scale-75 origin-center text-green-500">
+                <DollarSign size={52} />
+              </div>
             </div>
             <div>
-              <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-2">{data.title}</h2>
-              <p className="text-lg text-pink-500 font-medium tracking-wider uppercase">{data.subtitle}</p>
+              <h2 className="text-lg md:text-3xl font-display font-bold text-white mb-0.5 md:mb-1">{data.title}</h2>
+              <p className="text-[10px] md:text-sm text-pink-500 font-medium tracking-wider uppercase">{data.subtitle}</p>
             </div>
           </div>
-          {data.id > 1 && <div className="hidden md:block text-slate-600 font-display text-4xl font-bold opacity-20">0{data.id}</div>}
+          {data.id > 1 && <div className="block text-xl md:text-2xl text-slate-600 font-display font-bold opacity-20">0{data.id}</div>}
         </div>
 
-        <div className="flex-grow glass-panel rounded-2xl p-4 md:p-6 flex flex-col justify-start gap-2">
-          <div className="w-full h-[75%]">
+        <div className="flex-grow glass-panel rounded-2xl p-2 md:p-4 flex flex-col justify-start gap-2 overflow-hidden">
+          <div className="w-full h-full min-h-0">
             <FinancialChart />
           </div>
           {data.items?.[0] && (
-            <div className="text-center">
-              <p className="text-indigo-200/70 text-sm italic">{data.items[0].description}</p>
+            <div className="text-center absolute bottom-4 left-0 right-0 pointer-events-none opacity-50">
+              <p className="text-indigo-200/70 text-[10px] italic">{data.items[0].description}</p>
             </div>
           )}
         </div>
@@ -135,25 +137,29 @@ export const SlideRenderer: React.FC<{ data: SlideData; onReset?: () => void }> 
 
 
     return (
-      <div className="flex flex-col items-center justify-center h-full text-center space-y-12 animate-fade-in">
-        <h2 className="text-5xl md:text-6xl font-display font-bold text-white mb-2">
-          {data.title}
-        </h2>
-        <p className="text-xl text-pink-500 font-bold uppercase tracking-[0.2em]">{data.subtitle}</p>
+      <div className="flex flex-col items-center justify-center h-full text-center space-y-4 md:space-y-8 animate-fade-in">
+        <div className="mb-2">
+          <h2 className="text-2xl md:text-5xl font-display font-bold text-white mb-1">
+            {data.title}
+          </h2>
+          <p className="text-xs md:text-lg text-pink-500 font-bold uppercase tracking-[0.2em]">{data.subtitle}</p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mt-8">
+        <div className="grid grid-cols-1 portrait:grid-cols-1 landscape:grid-cols-3 gap-3 md:gap-6 w-full max-w-5xl overflow-y-auto max-h-[60vh] md:max-h-none p-2">
           {data.items?.map((item, idx) => (
-            <div key={idx} className="glass-panel p-6 rounded-xl flex flex-col items-center justify-center transform transition duration-500 hover:scale-105 hover:bg-white/10 group">
-              {getIcon(item.iconName)}
-              <h3 className="text-xl font-bold uppercase text-white group-hover:text-indigo-300 transition-colors">{item.title}</h3>
-              {item.description && <p className="text-sm text-slate-400 mt-2">{item.description}</p>}
+            <div key={idx} className="glass-panel p-4 md:p-6 rounded-xl flex flex-col items-center justify-center transform transition duration-500 hover:scale-105 hover:bg-white/10 group border-t-2 border-t-transparent hover:border-t-pink-500">
+              <div className="mb-2 md:mb-4">
+                {getIcon(item.iconName)}
+              </div>
+              <h3 className="text-sm md:text-xl font-bold uppercase text-white group-hover:text-indigo-300 transition-colors">{item.title}</h3>
+              {item.description && <p className="text-[10px] md:text-sm text-slate-400 mt-1 md:mt-2 line-clamp-3 md:line-clamp-none">{item.description}</p>}
             </div>
           ))}
         </div>
 
         <button
           onClick={() => setShowThankYou(true)}
-          className="mt-12 bg-white text-black px-12 py-5 rounded-full font-bold text-xl hover:bg-indigo-50 transition shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(99,102,241,0.5)] cursor-pointer"
+          className="mt-4 md:mt-8 bg-white text-black px-8 py-3 md:px-12 md:py-5 rounded-full font-bold text-base md:text-xl hover:bg-indigo-50 transition shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(99,102,241,0.5)] cursor-pointer"
         >
           Comenzar Ahora
         </button>
@@ -192,7 +198,7 @@ export const SlideRenderer: React.FC<{ data: SlideData; onReset?: () => void }> 
             className="glass-panel p-2 md:p-4 rounded-xl md:rounded-2xl h-full flex flex-col items-center text-center transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 border-t-2 border-t-transparent hover:border-t-pink-500 group"
           >
             <div className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-indigo-900/30 mb-1.5 md:mb-3 group-hover:bg-indigo-900/50 transition-colors">
-              <div className="scale-[0.65] md:scale-75 origin-center">{getIcon(item.iconName)}</div>
+              <div className="scale-75 md:scale-90 origin-center">{getIcon(item.iconName)}</div>
             </div>
             <h3 className="text-xs md:text-base font-bold text-white mb-1 leading-tight">{item.title}</h3>
             {item.align === 'left' && item.description.includes('•') ? (
