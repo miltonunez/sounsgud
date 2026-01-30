@@ -28,16 +28,30 @@ const App: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [nextSlide, prevSlide]);
 
-  // Fullscreen toggle
+  // Fullscreen toggle - robust cross-browser implementation
   const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-      setIsFullscreen(true);
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
+    try {
+      if (!document.fullscreenElement && !(document as any).webkitFullscreenElement) {
+        const docEl = document.documentElement as any;
+        if (docEl.requestFullscreen) {
+          docEl.requestFullscreen();
+        } else if (docEl.webkitRequestFullscreen) { /* Safari/Chrome Mobile */
+          docEl.webkitRequestFullscreen();
+        } else if (docEl.msRequestFullscreen) { /* IE/Edge */
+          docEl.msRequestFullscreen();
+        }
+        setIsFullscreen(true);
+      } else {
+        const doc = document as any;
+        if (doc.exitFullscreen) {
+          doc.exitFullscreen();
+        } else if (doc.webkitExitFullscreen) {
+          doc.webkitExitFullscreen();
+        }
         setIsFullscreen(false);
       }
+    } catch (err) {
+      console.log("Fullscreen toggle failed:", err);
     }
   };
 
@@ -88,10 +102,10 @@ const App: React.FC = () => {
       </div>
 
       {/* Navigation Controls */}
-      <div className="absolute bottom-0 left-0 w-full p-8 z-20 flex flex-col items-center gap-4 pointer-events-none">
+      <div className="absolute bottom-0 left-0 w-full p-2 md:p-8 z-20 flex flex-col items-center gap-2 md:gap-4 pointer-events-none">
 
         {/* Progress Bar */}
-        <div className="w-full max-w-xl h-1 bg-white/10 rounded-full overflow-hidden pointer-events-auto">
+        <div className="w-full max-w-xl h-0.5 md:h-1 bg-white/10 rounded-full overflow-hidden pointer-events-auto">
           <div
             className="h-full bg-gradient-to-r from-pink-500 to-indigo-500 transition-all duration-500 ease-out"
             style={{ width: `${currentProgress}%` }}
@@ -99,27 +113,27 @@ const App: React.FC = () => {
         </div>
 
         {/* Buttons */}
-        <div className="flex items-center gap-6 pointer-events-auto">
+        <div className="flex items-center gap-4 md:gap-6 pointer-events-auto">
           <button
             onClick={prevSlide}
             disabled={currentIndex === 0}
-            className={`p-4 rounded-full glass-panel transition-all duration-200 group ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-white/20 hover:scale-110 active:scale-95'
+            className={`p-2 md:p-4 rounded-full glass-panel transition-all duration-200 group ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-white/20 hover:scale-110 active:scale-95'
               }`}
           >
-            <ChevronLeft size={24} className="group-hover:-translate-x-0.5 transition-transform" />
+            <ChevronLeft size={20} className="md:w-6 md:h-6 group-hover:-translate-x-0.5 transition-transform" />
           </button>
 
-          <span className="font-display font-bold text-lg text-white/50 w-16 text-center">
+          <span className="font-display font-bold text-sm md:text-lg text-white/50 w-12 md:w-16 text-center">
             {currentIndex + 1} / {SLIDES.length}
           </span>
 
           <button
             onClick={nextSlide}
             disabled={currentIndex === SLIDES.length - 1}
-            className={`p-4 rounded-full glass-panel transition-all duration-200 group ${currentIndex === SLIDES.length - 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-white/20 hover:scale-110 active:scale-95'
+            className={`p-2 md:p-4 rounded-full glass-panel transition-all duration-200 group ${currentIndex === SLIDES.length - 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-white/20 hover:scale-110 active:scale-95'
               }`}
           >
-            <ChevronRight size={24} className="group-hover:translate-x-0.5 transition-transform" />
+            <ChevronRight size={20} className="md:w-6 md:h-6 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
       </div>

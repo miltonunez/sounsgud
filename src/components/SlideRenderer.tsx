@@ -169,43 +169,46 @@ export const SlideRenderer: React.FC<{ data: SlideData; onReset?: () => void }> 
   // 4. Standard Content Slide
   return (
     <div className="flex flex-col h-full animate-fade-in">
-      <div className="flex flex-row items-end justify-between mb-8 pb-4 border-b border-white/10">
-        <div className="flex items-center gap-6">
+      <div className="flex flex-row items-end justify-between mb-2 md:mb-8 pb-2 md:pb-4 border-b border-white/10">
+        <div className="flex items-center gap-3 md:gap-6">
           {/* Title Icon Restored */}
           {TitleIconMap[data.id] && (
-            <div className="p-3 bg-white/5 rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] backdrop-blur-sm">
-              {TitleIconMap[data.id]}
+            <div className="p-2 md:p-3 bg-white/5 rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] backdrop-blur-sm">
+              <div className="scale-75 md:scale-100 origin-center">{TitleIconMap[data.id]}</div>
             </div>
           )}
           <div>
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-2">{data.title}</h2>
-            <p className="text-sm md:text-lg text-pink-500 font-medium tracking-wider uppercase">{data.subtitle}</p>
+            <h2 className="text-xl md:text-5xl font-display font-bold text-white mb-1 md:mb-2">{data.title}</h2>
+            <p className="text-xs md:text-lg text-pink-500 font-medium tracking-wider uppercase">{data.subtitle}</p>
           </div>
         </div>
-        {data.id > 1 && <div className="block text-slate-600 font-display text-4xl font-bold opacity-20">0{data.id}</div>}
+        {data.id > 1 && <div className="block text-slate-600 font-display text-2xl md:text-4xl font-bold opacity-20">0{data.id}</div>}
       </div>
 
-      <div className="grid grid-cols-3 gap-4 md:gap-6 flex-grow items-start content-center">
+      <div className="grid grid-cols-3 gap-2 md:gap-6 flex-grow items-start content-center pb-2">
         {data.items?.map((item, idx) => (
           <div
             key={idx}
-            className="glass-panel p-8 rounded-2xl h-full flex flex-col items-center text-center transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 border-t-2 border-t-transparent hover:border-t-pink-500 group"
+            className="glass-panel p-2 md:p-8 rounded-xl md:rounded-2xl h-full flex flex-col items-center text-center transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 border-t-2 border-t-transparent hover:border-t-pink-500 group"
           >
-            <div className="w-20 h-20 flex items-center justify-center rounded-full bg-indigo-900/30 mb-6 group-hover:bg-indigo-900/50 transition-colors">
-              {getIcon(item.iconName)}
+            <div className="w-10 h-10 md:w-20 md:h-20 flex items-center justify-center rounded-full bg-indigo-900/30 mb-2 md:mb-6 group-hover:bg-indigo-900/50 transition-colors">
+              <div className="scale-75 md:scale-100 origin-center">{getIcon(item.iconName)}</div>
             </div>
-            <h3 className="text-2xl font-bold text-white mb-4">{item.title}</h3>
+            <h3 className="text-xs md:text-2xl font-bold text-white mb-1 md:mb-4 leading-tight">{item.title}</h3>
             {item.align === 'left' && item.description.includes('•') ? (
               <div className="w-full">
-                <p className="text-slate-300 leading-relaxed text-base text-center mb-2">{item.description.split('\n')[0]}</p>
-                <div className="text-slate-300 leading-relaxed text-base text-left pl-4">
+                <p className="text-slate-300 leading-snug md:leading-relaxed text-[10px] md:text-base text-center mb-1 md:mb-2 line-clamp-2 md:line-clamp-none">{item.description.split('\n')[0]}</p>
+                <div className="text-slate-300 leading-snug md:leading-relaxed text-[9px] md:text-base text-left pl-2 md:pl-4 hidden md:block">
                   {item.description.split('\n').slice(1).map((line, i) => (
                     <div key={i}>{line}</div>
                   ))}
                 </div>
+                <div className="text-slate-300 leading-snug text-[9px] text-left pl-2 md:hidden block line-clamp-4">
+                  {item.description.replace('\n', ' ')}
+                </div>
               </div>
             ) : (
-              <p className="text-slate-300 leading-relaxed text-base whitespace-pre-line">{item.description}</p>
+              <p className="text-slate-300 leading-snug md:leading-relaxed text-[9px] md:text-base whitespace-pre-line line-clamp-5 md:line-clamp-none">{item.description}</p>
             )}
           </div>
         ))}
