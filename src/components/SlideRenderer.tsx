@@ -185,7 +185,7 @@ export const SlideRenderer: React.FC<{ data: SlideData; onReset?: () => void }> 
         {data.id > 1 && <div className="block text-slate-600 font-display text-xl md:text-2xl font-bold opacity-20">0{data.id}</div>}
       </div>
 
-      <div className="grid grid-cols-3 gap-2 md:gap-4 flex-grow items-start content-center pb-2 md:pb-4">
+      <div className="grid grid-cols-1 portrait:grid-cols-1 landscape:grid-cols-3 gap-2 md:gap-4 flex-grow items-start content-center pb-2 md:pb-4 overflow-y-auto">
         {data.items?.map((item, idx) => (
           <div
             key={idx}

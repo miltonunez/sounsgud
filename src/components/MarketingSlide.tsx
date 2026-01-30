@@ -52,8 +52,8 @@ const MarketingSlide: React.FC<{ data: SlideData }> = ({ data }) => {
                 <div className="block text-slate-600 font-display text-xl md:text-2xl font-bold opacity-20">0{data.id}</div>
             </div>
 
-            {/* 3 Columns */}
-            <div className="grid grid-cols-3 gap-2 md:gap-4 flex-grow items-end content-center pb-2 md:pb-4">
+            {/* 3 Columns - Stack vertically in portrait mode */}
+            <div className="grid grid-cols-1 portrait:grid-cols-1 landscape:grid-cols-3 gap-2 md:gap-4 flex-grow items-end content-center pb-2 md:pb-4 overflow-y-auto">
 
                 {/* Column 1: Smartphone (Vertical) - Producción Audiovisual */}
                 <div className="flex flex-col items-center gap-2 md:gap-3 group h-full justify-end">
