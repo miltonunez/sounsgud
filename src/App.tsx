@@ -155,18 +155,7 @@ const App: React.FC = () => {
         </span>
       </div>
 
-      {/* Rotate Device Overlay */}
-      <div className="fixed inset-0 z-[100] bg-slate-950 hidden portrait:flex flex-col items-center justify-center p-8 text-center animate-fade-in">
-        <div className="relative mb-8">
-          <Smartphone size={64} className="text-white opacity-80 animate-rotate-device" />
-          <RotateCw size={32} className="absolute -top-4 -right-4 text-pink-500 animate-spin-slow" />
-        </div>
-        <h2 className="text-2xl font-bold text-white mb-4">Experiencia Mejorada</h2>
-        <p className="text-indigo-200 text-lg leading-relaxed">
-          Para vivir la experiencia <span className="font-bold text-white">Sounsgud</span>,<br />
-          por favor gira tu dispositivo.
-        </p>
-      </div>
+
 
       {/* Inline styles for custom animations that Tailwind standard doesn't cover perfectly without config */}
       <style>{`
