@@ -104,8 +104,8 @@ export const SlideRenderer: React.FC<{ data: SlideData; onReset?: () => void }> 
             <FinancialChart />
           </div>
           {data.items?.[0] && (
-            <div className="text-center absolute bottom-4 left-0 right-0 pointer-events-none opacity-50">
-              <p className="text-indigo-200/70 text-[10px] italic">{data.items[0].description}</p>
+            <div className="text-center mt-auto landscape:mt-2 opacity-50">
+              <p className="text-indigo-200/70 text-[10px] md:text-xs italic">{data.items[0].description}</p>
             </div>
           )}
         </div>

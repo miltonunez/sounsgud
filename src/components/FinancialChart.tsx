@@ -19,12 +19,12 @@ const dataNet = [
 
 const FinancialChart: React.FC = () => {
   return (
-    <div className="w-full h-full flex flex-col lg:flex-row items-center justify-between gap-2 md:gap-4 py-2 md:py-4">
+    <div className="w-full h-full flex flex-col landscape:flex-row items-center justify-between gap-1 md:gap-4 py-1 md:py-4 overflow-y-auto landscape:overflow-visible">
 
       {/* Chart 1: Distribution Cost (Left, Smaller) */}
-      <div className="w-full lg:w-1/4 flex flex-col items-center opacity-80 transition hover:opacity-100">
-        <h3 className="text-xs font-display font-bold mb-1 md:mb-2 text-center text-slate-400 uppercase tracking-wider">Ingresos Brutos</h3>
-        <div className="h-24 md:h-32 w-full">
+      <div className="w-full landscape:flex-1 flex flex-col items-center opacity-80 transition hover:opacity-100 min-w-0">
+        <h3 className="text-[10px] md:text-xs font-display font-bold mb-1 md:mb-2 text-center text-slate-400 uppercase tracking-wider">Ingresos Brutos</h3>
+        <div className="h-20 landscape:h-24 md:h-32 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -54,9 +54,9 @@ const FinancialChart: React.FC = () => {
       </div>
 
       {/* Chart 2: Main Structure (Center, Large) */}
-      <div className="w-full lg:w-1/2 flex flex-col items-center relative z-10">
-        <h3 className="text-lg md:text-xl font-display font-bold mb-2 md:mb-4 text-center text-white drop-shadow-lg">ESTRUCTURA DE ALIANZA</h3>
-        <div className="h-48 md:h-64 w-full relative">
+      <div className="w-full landscape:flex-[2] flex flex-col items-center relative z-10 min-w-0">
+        <h3 className="text-base landscape:text-sm md:text-xl font-display font-bold mb-1 md:mb-4 text-center text-white drop-shadow-lg">ESTRUCTURA DE ALIANZA</h3>
+        <div className="h-36 landscape:h-40 md:h-64 w-full relative">
           {/* Decorative Ring */}
           <div className="absolute inset-0 rounded-full border border-indigo-500/10 animate-pulse scale-90"></div>
 
@@ -108,9 +108,9 @@ const FinancialChart: React.FC = () => {
       </div>
 
       {/* Chart 3: Net Split (Right, Smaller) */}
-      <div className="w-full lg:w-1/4 flex flex-col items-center opacity-80 transition hover:opacity-100">
-        <h3 className="text-xs font-display font-bold mb-1 md:mb-2 text-center text-slate-400 uppercase tracking-wider">División Remanente</h3>
-        <div className="h-24 md:h-32 w-full">
+      <div className="w-full landscape:flex-1 flex flex-col items-center opacity-80 transition hover:opacity-100 min-w-0">
+        <h3 className="text-[10px] md:text-xs font-display font-bold mb-1 md:mb-2 text-center text-slate-400 uppercase tracking-wider">División Remanente</h3>
+        <div className="h-20 landscape:h-24 md:h-32 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
